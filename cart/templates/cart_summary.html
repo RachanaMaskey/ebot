@@ -193,9 +193,11 @@
             {%endfor%}
             <div class="container" style="margin-top: 20px;margin-bottom: 20px;">
                 <div class="box-element">
-                    <div><strong>Total Price: ${{totals}}</strong></div>
+                    <div><strong>Total Price: Rs.{{totals}}</strong></div>
                     <br>
-                    <a class="custom-cart-button" href="{%url 'home' %}">Home</a>
+                    <div style="margin-bottom: 15px;">
+                        <a class="custom-cart-button"  href="{%url 'home' %}">Home</a>
+                    </div>
                 </div>
             </div>
         {%else%}

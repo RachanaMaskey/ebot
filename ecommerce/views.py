@@ -27,6 +27,12 @@ def about(request):
 def contact(request):
     return render(request,'contact.html',{})
 
+def allproduct(request):
+    products= Product.objects.all()
+    categories=Category.objects.all()
+    return render(request,'allproduct.html',{"categories":categories,"products":products})
+
+
 def login_user(request):
     if request.method=="POST":
         username=request.POST['username']
