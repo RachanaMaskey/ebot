@@ -138,14 +138,39 @@
             <div style="flex:1.5"><strong>Quantity</strong></div>
             <div style="flex:1.2"><strong>Price</strong></div>
             <div style="flex:1.4"><strong>Total</strong></div>
+            <div style="flex:1.4"><strong>Update</strong></div>
+            <div style="flex:1.4"><strong>Delete</strong></div>
         </div>
       
             {%for product in cart_products %}
                 <div class="cart-row">
-                    <div style="flex:2">{{product.id}}</div>
+                    <div style="flex:2;margin-top: 3px;" >{{product.id}}</div>
                     <div style="flex:3"><img src="{{product.image.url}}" alt="hi" style="width:155px;height: 155px;margin-right:3;"></div>
                     <div style="flex:2">{{product.name}}</div>
-                    <div style="flex:2">quantity</div>
+                    <div style="flex:2">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8" >
+                              <select class="form-select" id="select{{product.id}}">
+                                {%for key,value in quantities.items %}
+                                    {%if key == product.id|slugify%}
+                                        <option value="selected">{{value}}</option>
+                                    {%endif%}
+                                {%endfor%}
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select>
+                            </div>
+                          </div>
+                    </div>
+                    
                     {%if product.is_sale%}
                         <div style="flex:2">
                             <h6><strike>Rs {{product.price}}</strike></h6>
@@ -154,12 +179,21 @@
                     {%else%}
                         <div style="flex:2"> Rs {{product.price}}</div>
                     {%endif%}
+                    <br>
+                    
                     <div style="flex:2">Total</div>
+                    <div style="flex:1.4">
+                        <button type="button" data-index="{{product.id}}" class="custom-cart-button update-cart">Update</button>
+                    </div>
+                    <div style="flex:1.4">
+                        <button type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">Delete</button>
+                    </div>
+                    
                 </div>
             {%endfor%}
             <div class="container" style="margin-top: 20px;margin-bottom: 20px;">
                 <div class="box-element">
-                    <div>Total Price</div>
+                    <div><strong>Total Price: :${{totals}}</strong></div>
                     <br>
                     <a class="custom-cart-button" href="{%url 'home' %}">Home</a>
                 </div>
@@ -199,4 +233,65 @@
 
 
 
+<script>
+//update cart
+$(document).on('click','.update-cart',function(e){
+   e.preventDefault();
+   //grab product id
+   var productid=$(this).data('index');
+   $.ajax({
+       type:'POST',
+       url:'{%url "cart_update" %}',
+       data:{
+           product_id:$(this).data('index'),
+           product_qty:$('#select' + productid + ' option:selected').text(),
+           csrfmiddlewaretoken:'{{csrf_token}}',
+           action:'post'
+       },
+
+       success:function(json){
+         // console.log(json)
+            location.reload()
+       },
+
+       error:function(xhr,errmsg,err){
+
+       }
+
+   });
+   
+})
+
+
+
+//delete item from cart
+$(document).on('click','.delete-product',function(e){
+   e.preventDefault();
+  
+   $.ajax({
+       type:'POST',
+       url:'{%url "cart_delete" %}',
+       data:{
+           product_id:$(this).data('index'),
+           csrfmiddlewaretoken:'{{csrf_token}}',
+           action:'post'
+       },
+
+       success:function(json){
+         // console.log(json)
+            location.reload()
+       },
+
+       error:function(xhr,errmsg,err){
+
+       }
+
+   });
+   
+})
+
+</script>
+
 {%endblock content%}
+
+

@@ -30,7 +30,28 @@
 
                   {%endif%}
 
-                  In: {{product.category}}
+                  In category: {{product.category}}
+                    <br><br>
+                  <div class="row justify-content-center">
+                    <div class="col-md-2">
+                      Quantity
+                    </div>
+                    <div class="col-md-2">
+                      <select class="form-select" id="qty-cart">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                  </div>
+                  
                   <br>
                   <br>
 
@@ -55,6 +76,7 @@
         url:'{%url "cart_add" %}',
         data:{
             product_id:$('#add-cart').val(),
+            product_qty:$('#qty-cart option:selected').text(),
             csrfmiddlewaretoken:'{{csrf_token}}',
             action:'post'
         },
