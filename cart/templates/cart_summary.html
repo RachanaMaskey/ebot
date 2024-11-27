@@ -181,7 +181,7 @@
                     {%endif%}
                     <br>
                     
-                    <div style="flex:2">Total</div>
+                    <div style="flex:2">${{sum}}</div>
                     <div style="flex:1.4">
                         <button type="button" data-index="{{product.id}}" class="custom-cart-button update-cart">Update</button>
                     </div>
@@ -193,7 +193,7 @@
             {%endfor%}
             <div class="container" style="margin-top: 20px;margin-bottom: 20px;">
                 <div class="box-element">
-                    <div><strong>Total Price: :${{totals}}</strong></div>
+                    <div><strong>Total Price: ${{totals}}</strong></div>
                     <br>
                     <a class="custom-cart-button" href="{%url 'home' %}">Home</a>
                 </div>

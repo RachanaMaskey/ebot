@@ -10,13 +10,14 @@ urlpatterns = [
     path('register/',views.register_user,name='register'),
     path('product/<int:pk>',views.product,name='product'),
     path('category/<str:cat>',views.category,name='category'),
+    path('category_summary/',views.category_summary,name='category_summary'),
 
 
 #for chatbot
     path('chatbot/', views.chatbot_view, name='chatbot'),
     path('chat/', views.chatbot_page, name='chatbot_page'),
 
-    #for caht history
+    #for chat history
     path('get-chat-history/', views.get_chat_history, name='get_chat_history'),
     path('save-chat-history/', views.save_chat_history, name='save_chat_history'),
     

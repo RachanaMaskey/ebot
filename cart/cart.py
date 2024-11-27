@@ -64,6 +64,30 @@ class Cart():
                         total=total+(product.price*value)
         
         return total
+    
+    def total(self):
+        #get product id
+        product_ids=self.cart.keys()
+
+        #lookup those keys in product database model
+        products=Product.objects.filter(id__in=product_ids)
+
+        #get quantities
+        quantities=self.cart
+
+        #start couning at 0
+        sum=0
+        for key,value in quantities.items():
+            #convert key string into int
+            key=int(key)
+            for product in products:
+                if product.id==key:
+                    if product.is_sale:
+                        sum=(product.sale_price*value)
+                    else:
+                        sum=(product.price*value)
+        
+        return sum
 
 
     

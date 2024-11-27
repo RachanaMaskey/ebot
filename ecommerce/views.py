@@ -12,8 +12,14 @@ from .forms import SignUpForm
 
 
 def home(request):
-    products= Product.objects.all()
-    return render(request,'home.html',{'products':products})
+    # Fetch all sale products
+    sale_products = Product.objects.filter(is_sale=True)
+    # Fetch featured products excluding those already in sale
+    products = Product.objects.filter(is_sale=False).order_by('?')[:4]
+    return render(request, 'home.html', {
+        'sale_products': sale_products,
+        'products': products
+    })
 
 def about(request):
     return render(request,'about.html',{})
@@ -83,7 +89,9 @@ def category(request,cat):
         messages.success(request,("The category doesn't exist..."))
         return redirect('home')
     
-
+def category_summary(request):
+    categories=Category.objects.all()
+    return render(request,'category_summary.html',{"categories":categories})    
 
 
     
