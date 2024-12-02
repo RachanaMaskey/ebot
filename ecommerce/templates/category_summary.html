@@ -111,24 +111,77 @@
 
 <div class="container" style="margin-bottom: 40px;">
     <div class="row"  style="margin-top: 20px;">
-        {%for category in categories%}
-            <div class="col-lg-6">
-                <div class="box-element">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <center>
-                                <a style="color:black;" href="{%url 'category' category%}">{{category}}</a>
-                            </center>
-                        </div>
-                        <div class="col-lg-2">
-
-                        </div>
-                    </div>
+        <div class="col-lg-3" style="margin-right: 100px;margin-left: 50px;">
+            <div class="box-element">
+                <div class="row">
+                    <img src="{% static 'images/braceletcat.jpg'%}" style="width: 320px;height: 320px;">
                 </div>
-                <br><br>
-            </div>        
-        {%endfor%}
+                <br>
+                <div class="row">
+                    <a class="dropdown-item" href="{%url 'category' 'Bracelet'%}" style="text-align: justify;"><center>BRACELET</center></a>
+                </div>
+            </div> 
+            <br><br>
+        </div>
+        <div class="col-lg-3" style="margin-right: 100px;">
+            <div class="box-element">
+                <div class="row">
+                    <img src="{% static 'images/earringcat.jpg'%}" style="width: 320px;height: 320px;">
+                </div>
+                <br>
+                <div class="row">
+                    <a class="dropdown-item" href="{% url 'category' 'Earring'%}" style="text-align: justify;"><center>EARRING</center></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="box-element">
+                <div class="row">
+                    <img src="{% static 'images/neckcat.jpg'%}" style="width: 320px;height: 320px;">
+                </div>
+                <br>
+                <div class="row">
+                    <a class="dropdown-item"href="{%url 'category' 'Necklace'%}" style="text-align: justify;"><center>NECKLACE</center></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3" style="margin-right: 100px;margin-left: 50px;">
+            <div class="box-element">
+                <div class="row">
+                    <img src="{% static 'images/RINGcat.jpg'%}" style="width: 320px;height: 320px;">
+                </div>
+                <br>
+                <div class="row">
+                    <a class="dropdown-item" href="{%url 'category' 'Ring'%}"style="text-align: justify;"><center>RING</center></a>
+                </div>
+            </div>
+            <br><br>
+        </div>
+        <div class="col-lg-3" style="margin-right: 100px;">
+            <div class="box-element">
+                <div class="row">
+                    <img src="{% static 'images/glassescat.jpg'%}" style="width: 320px;height: 320px;">
+                </div>
+                <br>
+                <div class="row">
+                    <a class="dropdown-item" href="{%url 'category' 'Sunglasses'%}" style="text-align: justify;"><center>SUNGLASSES</center></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="box-element">
+                <div class="row">
+                    <img src="{% static 'images/watchcat.jpg'%}" style="width: 320px;height: 320px;">
+                </div>
+                <br>
+                <div class="row">
+                    <a class="dropdown-item" href="{%url 'category' 'Watch'%}" style="text-align: justify;"><center>WATCH</center></a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<br><br>
 </div>
 
 
