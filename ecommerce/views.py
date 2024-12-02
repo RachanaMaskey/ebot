@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm
+from django.core.paginator import Paginator
 
 
 
@@ -30,7 +31,11 @@ def contact(request):
 def allproduct(request):
     products= Product.objects.all()
     categories=Category.objects.all()
-    return render(request,'allproduct.html',{"categories":categories,"products":products})
+    paginator =Paginator(products, 4)  # Show 4 products per page
+
+    page_number = request.GET.get('page')  # Get the page number from the query parameters
+    page_obj = paginator.get_page(page_number)  # Get the products for the requested page
+    return render(request,'allproduct.html',{"categories":categories,"products":products,'page_obj': page_obj})
 
 
 def login_user(request):

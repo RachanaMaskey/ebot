@@ -97,4 +97,12 @@
 
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card-body h5').forEach(el => {
+          el.textContent = el.textContent.replace(/_/g, ' ');
+      });
+  });
+</script>
+
 {%endblock content%}
