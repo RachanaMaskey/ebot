@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .forms import SignUpForm
+from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm
 from django.core.paginator import Paginator
 
 
@@ -76,9 +76,11 @@ def register_user(request):
             login(request,user)
             messages.success(request,("You have registered successfully!!"))
             return redirect('home')
+        
         else:
-            messages.success(request,("There was an error. Please try again..."))
-            return redirect('register')
+            for error in list(form.errors.values()):
+                messages.error(request,error)
+                return redirect('register')
     else:
         return render(request,'register.html',{'form':form})
     
@@ -105,8 +107,52 @@ def category_summary(request):
     categories=Category.objects.all()
     return render(request,'category_summary.html',{"categories":categories,"products":products})    
 
+def update_user(request):
+    if request.user.is_authenticated:
+        current_user=User.objects.get(id=request.user.id)
+        user_form= UpdateUserForm(request.POST or None, instance=current_user)
 
-    
+        if user_form.is_valid():
+            user_form.save()
+
+            login(request,current_user)
+            messages.success(request,"User profile has been updated!!!")
+            return redirect('home')
+        else:
+            for error in list(user_form.errors.values()):
+                    messages.error(request,error)
+        return render(request,"update_user.html",{'user_form':user_form})
+    else:
+        messages.success(request,"User must be logged in")
+        return redirect('home')
+
+def update_password(request):
+    if request.user.is_authenticated:
+        current_user=request.user
+        #did they fill out the form
+        if request.method == 'POST':
+            form=ChangePasswordForm(current_user,request.POST)
+            #is the form valid
+            if form.is_valid():
+                form.save()
+                messages.success(request,"Your password has been updated!!!!!!!!")
+                login(request,current_user)
+                return redirect('update_user')
+            
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request,error)
+                    return redirect('update_password')
+
+        else:
+            form=ChangePasswordForm(current_user)
+            return render(request,"update_password.html",{'form':form})
+        
+    else:
+        messages.success(request,"User must be logged in")
+        return redirect('home')
+
+
 
 # for the chatbot
 

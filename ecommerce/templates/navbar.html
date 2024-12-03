@@ -46,6 +46,7 @@
                 <!-- <button class="custom-login-button" type="submit">Login/Register</button> -->
                 {% if user.is_authenticated%}
                     <a href="{%url 'logout'%}" class="custom-login-button">Logout</a>
+                    <a href="{%url 'update_user'%}" class="custom-login-button">Profile</a>
                 {%else%}
                     <a href="{%url 'login'%}" class="custom-login-button">Login/Register</a>
                 {%endif%}
