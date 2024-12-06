@@ -176,10 +176,16 @@
     <div class="container px-4 px-lg-5 mt-3">
         <p><b>Browse Products here:</b></p>
         <form method="GET" action="{% url 'allproduct' %}" style="margin-bottom: 20px;">
-          <input type="text" name="q" placeholder="Search by product name or category" 
-                 style="padding: 10px; width: 70%; border: 1px solid #ccc; border-radius: 5px;"
+            <div class="row">
+                <div class="col-lg-11">
+                    <input type="text" name="q" placeholder="Search by product name or category" 
+                 style="padding: 10px; width: 102%; border: 1px solid #ccc; border-radius: 5px;"
                  value="{{ original_query }}">
-          <button type="submit" class="custom-login-button">Search</button>
+                </div>
+                <div class="col-lg-1">
+                    <button type="submit" class="custom-login-button">Search</button>
+                </div>
+            </div>
         </form>
         <hr>
     </div>
