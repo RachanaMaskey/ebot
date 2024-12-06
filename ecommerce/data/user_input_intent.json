@@ -1,0 +1,276 @@
+{
+    "intents": [
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "bye",
+            "tag": "farewell"
+        },
+        {
+            "patterns": "f",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "a",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "f",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "add boho",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 3 boho",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 3 vintage",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 3 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 3 brown watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 heart pendant in the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 heart pendant in the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "watch",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "ring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "rrng",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "yo",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "halo",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "hello",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "buy ",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want to purchase a ring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "van cleef",
+            "tag": "farewell"
+        },
+        {
+            "patterns": "vancleef",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "add lucky bracelet to the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "3 lucky bracelet",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "add 5 boho ring to cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 5 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 4 lucky bracelet",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 4 lucky bracelet",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "hoop",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "add",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 1 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 hoop earring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 hoop earring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "yo",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "i want to login",
+            "tag": "account_login"
+        },
+        {
+            "patterns": "i need help",
+            "tag": "help"
+        },
+        {
+            "patterns": "how can i pay?",
+            "tag": "payment_inquiry"
+        },
+        {
+            "patterns": "yes",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "no",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "ok",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "hoop",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "erring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "rng",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "brcelet",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "sunglasss",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "sunglass",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "ADD 2 CHAIN BRACELET",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "earring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "add to cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "earring add to cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "2 star earring add to cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "2 star earring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "star earring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "add to cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "buy",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "pay",
+            "tag": "payment_inquiry"
+        },
+        {
+            "patterns": "esewa",
+            "tag": "payment_inquiry"
+        },
+        {
+            "patterns": "9841123456",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "hello",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "ring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "add to cart 2 star ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add to cart two star earring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add to cart 2 star earring",
+            "tag": "add_to_cart"
+        }
+    ]
+}

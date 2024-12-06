@@ -169,94 +169,82 @@
     </div>
 </header>
 
+
+
+<!-- Search Bar -->
+ <section class="py-5">
+    <div class="container px-4 px-lg-5 mt-3">
+        <p><b>Browse Products here:</b></p>
+        <form method="GET" action="{% url 'allproduct' %}" style="margin-bottom: 20px;">
+          <input type="text" name="q" placeholder="Search by product name or category" 
+                 style="padding: 10px; width: 70%; border: 1px solid #ccc; border-radius: 5px;"
+                 value="{{ original_query }}">
+          <button type="submit" class="custom-login-button">Search</button>
+        </form>
+        <hr>
+    </div>
+</section>
+
+
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-3">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% for product in page_obj %}
-                {% if product.is_sale %}
-                    <div class="col mb-5">
-                        <div class="card h-100 box-element">
-                             <!-- Sale badge-->
-                             <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem; background-color:#C62E2E;">Sale</div>
-                            <!-- Product image-->
-                            <img class="thumbnail" src="{{ product.image.url }}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ product.name }}</h5>
-                                    <hr>
-                                    <h6><strike>Rs {{ product.price }}</strike></h6>
-                                    <h6>Rs {{ product.sale_price }}</h6>
-                                    In: {{ product.category }}
-                                </div>
+                <div class="col mb-5">
+                    <div class="card h-100 box-element">
+                        {% if product.is_sale %}
+                            <div class="badge text-white position-absolute"
+                                 style="top: 0.5rem; right: 0.5rem; background-color: #C62E2E;">
+                                Sale
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <a class="custom-cart-button" href="{% url 'product' product.id %}">View</a>
-                                </div>
-                            </div>
+                        {% endif %}
+                        <!-- Product image -->
+                        <img class="thumbnail" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <!-- Product details -->
+                        <div class="card-body p-4 text-center">
+                            <h5 class="fw-bolder">{{ product.name }}</h5>
+                            <hr>
+                            {% if product.is_sale %}
+                                <h6><strike>Rs {{ product.price }}</strike></h6>
+                                <h6>Rs {{ product.sale_price }}</h6>
+                            {% else %}
+                                <h6>Rs {{ product.price }}</h6>
+                            {% endif %}
+                            In: {{ product.category }}
+                        </div>
+                        <!-- Product actions -->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+                            <a class="custom-cart-button" href="{% url 'product' product.id %}">View</a>
                         </div>
                     </div>
-                {% else %}
-                    <div class="col mb-5">
-                        <div class="card h-100 box-element">
-                            <!-- Product image-->
-                            <img class="thumbnail" src="{{ product.image.url }}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ product.name }}</h5>
-                                    <hr>
-                                    <h6 style="display: inline-block;">Rs {{ product.price }}</h6>
-                                    <br>
-                                    In: {{ product.category }}
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <a class="custom-cart-button" href="{% url 'product' product.id %}">View</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
+                </div>
+            {% empty %}
+                <div class="text-center py-5">
+                    <h3>No such products available.</h3>
+                    <p>Try searching for a different product or category.</p>
+                </div>
             {% endfor %}
         </div>
 
-        <!-- Pagination Controls: Previous, Page Numbers, Next -->
+        <!-- Pagination -->
         <div class="pagination">
-            <!-- Previous Button -->
-            <span class="page-item">
-                {% if page_obj.has_previous %}
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                {% else %}
-                    <span class="page-link disabled">Previous</span>
-                {% endif %}
-            </span>
-
-            <!-- Page Number Links -->
+            {% if page_obj.has_previous %}
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% else %}
+                <span class="page-link disabled">Previous</span>
+            {% endif %}
             {% for num in page_obj.paginator.page_range %}
-                <span class="page-item">
-                    {% if num == page_obj.number %}
-                        <span class="page-link active">{{ num }}</span>
-                    {% else %}
-                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                    {% endif %}
-                </span>
-            {% endfor %}
-
-            <!-- Next Button -->
-            <span class="page-item">
-                {% if page_obj.has_next %}
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                {% if num == page_obj.number %}
+                    <span class="page-link active">{{ num }}</span>
                 {% else %}
-                    <span class="page-link disabled">Next</span>
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
                 {% endif %}
-            </span>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% else %}
+                <span class="page-link disabled">Next</span>
+            {% endif %}
         </div>
     </div>
 </section>

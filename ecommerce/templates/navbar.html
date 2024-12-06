@@ -37,16 +37,23 @@
                     <a class="nav-link active" style="color: white;" href="{%url 'contact'%}">ContactUs</a>
                 </li>
             </ul>
-            <form class="custom-search-form">
-                <input class="form-control mr-sm-2 custom-search-input" type="search" placeholder="Search" aria-label="Search">
-                <button class="custom-search-button" type="submit">Search</button>
-            </form>
-
            <form>
                 <!-- <button class="custom-login-button" type="submit">Login/Register</button> -->
                 {% if user.is_authenticated%}
-                    <a href="{%url 'logout'%}" class="custom-login-button">Logout</a>
-                    <a href="{%url 'update_user'%}" class="custom-login-button">Profile</a>
+                <div class="row">
+                    <div class="col" style="margin-top: 5px;">
+                        <a href="{%url 'logout'%}" class="custom-login-button">Logout</a>
+                    </div>
+                    <div class="col">
+                        <a class=" nav-item dropdown nav-link dropdown-toggle custom-login-button" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;width: 70px;height: 30px;margin-left: 1px;text-align: center;"><strong>Profile</strong></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{%url 'update_user'%}">User Profile</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="{%url 'update_info'%}">User Info</a></li> 
+                        </ul>
+                    </div>
+                </div>
+                    
                 {%else%}
                     <a href="{%url 'login'%}" class="custom-login-button">Login/Register</a>
                 {%endif%}

@@ -1,15 +1,12 @@
 from django.shortcuts import render,redirect
-from .models import Product,Category
+from .models import Product,Category,Profile
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm
+from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm,UserInfoForm
 from django.core.paginator import Paginator
-
-
-
 
 
 def home(request):
@@ -29,30 +26,61 @@ def contact(request):
     return render(request,'contact.html',{})
 
 def allproduct(request):
-    products= Product.objects.all()
-    categories=Category.objects.all()
-    paginator =Paginator(products, 4)  # Show 4 products per page
+    query = request.GET.get('q', '')  
+    products = Product.objects.all()  # Fetch all products initially
+    categories = Category.objects.all()
+    no_products_found = False  # Flag to track if no products are found
 
-    page_number = request.GET.get('page')  # Get the page number from the query parameters
-    page_obj = paginator.get_page(page_number)  # Get the products for the requested page
-    return render(request,'allproduct.html',{"categories":categories,"products":products,'page_obj': page_obj})
+    if query:
+        search_query = query.replace(' ', '_')
+        products = products.filter(name__icontains=search_query) | products.filter(category__name__iexact=query)
+
+    # Check if any products are available after filtering
+    if not products.exists():
+        no_products_found = True
+
+    # Add pagination
+    paginator = Paginator(products, 4) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'categories': categories,
+        'products': products,
+        'page_obj': page_obj,
+        'original_query': query,  # Pass the search query back to the template
+        'no_products_found': no_products_found,  # Include the flag in the context
+    }
+    return render(request, 'allproduct.html', context)
+
 
 
 def login_user(request):
-    if request.method=="POST":
-        username=request.POST['username']
-        password=request.POST['password']
-        user=authenticate(request,username=username,password=password)
+    if request.method == "POST":
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
+
+        # Check if username or password fields are empty
+        if not username or not password:
+            messages.error(request, "Both username and password are required.")
+            return redirect('login')
+
+        # Check if the username exists
+        if not User.objects.filter(username=username).exists():
+            messages.error(request, "The username you entered does not exist.")
+            return redirect('login')
+
+        # Authenticate the user
+        user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request,user)
-            messages.success(request,("You have logged in successfully!!!!!"))
+            login(request, user)
+            messages.success(request, "You have logged in successfully!")
             return redirect('home')
         else:
-            messages.success(request,("There was an error. Please try again..."))
+            messages.error(request, "Invalid password. Please try again.")
             return redirect('login')
     else:
-
-        return render(request,'login.html',{})
+        return render(request, 'login.html', {})
 
 def logout_user(request):
     # Clear chat history from session
@@ -64,26 +92,26 @@ def logout_user(request):
     return redirect('home')
 
 def register_user(request):
-    form=SignUpForm()
-    if request.method=="POST":
-        form=SignUpForm(request.POST)
+    form = SignUpForm()
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            username=form.cleaned_data['username']
-            password=form.cleaned_data['password1']
-            #log in user
-            user=authenticate(username=username,password=password)
-            login(request,user)
-            messages.success(request,("You have registered successfully!!"))
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            # Log in user
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, "You have registered successfully!")
             return redirect('home')
-        
         else:
-            for error in list(form.errors.values()):
-                messages.error(request,error)
-                return redirect('register')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field.capitalize()}: {error}")
+            return redirect('register')
     else:
-        return render(request,'register.html',{'form':form})
-    
+        return render(request, 'register.html', {'form': form})
+
 def product(request,pk):
     product= Product.objects.get(id=pk)
     return render(request,'product.html',{'product':product})
@@ -125,6 +153,7 @@ def update_user(request):
     else:
         messages.success(request,"User must be logged in")
         return redirect('home')
+    
 
 def update_password(request):
     if request.user.is_authenticated:
@@ -151,6 +180,26 @@ def update_password(request):
     else:
         messages.success(request,"User must be logged in")
         return redirect('home')
+    
+
+def update_info(request):
+    if request.user.is_authenticated:
+        current_user=Profile.objects.get(id=request.user.id)
+        form= UserInfoForm(request.POST or None, instance=current_user)
+
+        if form.is_valid():
+            form.save()
+ 
+            messages.success(request,"Your informations has been updated!!!")
+            return redirect('home')
+        else:
+            for error in list(form.errors.values()):
+                    messages.error(request,error)
+        return render(request,"update_info.html",{'form':form})
+    else:
+        messages.success(request,"User must be logged in")
+        return redirect('home')
+        
 
 
 
@@ -164,12 +213,12 @@ def chatbot_view(request):
     chat_history = request.session.get('chat_history', [])  # Get chat history from the session
     
     if user_message:
-        bot_response = generate_response(user_message)  
-        # Add the new message and response to the chat history
+        bot_response = generate_response(user_message, request)  
+       
         chat_history.append({'user': user_message, 'bot': bot_response})
         request.session['chat_history'] = chat_history  # Update session with new history
     else:
-        bot_response = "Please enter a message..."
+        bot_response = "Please enter a message"
 
     return JsonResponse({'response': bot_response, 'history': chat_history})  # Return JSON response to the frontend
 
@@ -210,7 +259,7 @@ def save_chat_history(request):
 
 
 #for resukt analysis
-from .naive_bayes_chatbot import preprocess_text, classify_intent, train_naive_bayes, generate_response,extract_product_name,get_product_details,extract_category_name,get_products_in_category
+from .naive_bayes_chatbot import preprocess_text, classify_intent, train_naive_bayes, generate_response,extract_product_names,get_product_details,extract_category_name,get_products_in_category
 import json,os,math
 
 def store_query(request):
@@ -231,6 +280,28 @@ def store_query(request):
 
 
 import math
+
+# Levenshtein Distance function
+def levenshtein_distance(str1, str2):
+    """
+    Calculate the Levenshtein distance between two strings.
+    """
+    m, n = len(str1), len(str2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    for i in range(m + 1):
+        for j in range(n + 1):
+            if i == 0:
+                dp[i][j] = j
+            elif j == 0:
+                dp[i][j] = i
+            elif str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
+
+    return dp[m][n]
+
 
 def chatbot_workflow_analysis(request):
     # Retrieve the current user query from the session
@@ -282,17 +353,41 @@ def chatbot_workflow_analysis(request):
         "category_name": None,
         "product_response": None,
         "category_response": None,
+        "levenshtein_distances": {}  # Store Levenshtein distances for categories
     }
     
     if best_intent == "product_search":
-        response_data["product_name"] = extract_product_name(user_query)
-        response_data["product_response"] = get_product_details(response_data["product_name"])
+        product_names = extract_product_names(user_query)
+        
+        # If it's a list, take the first product name (or handle it accordingly)
+        if isinstance(product_names, list) and len(product_names) > 0:
+            product_name = product_names[0]  # Get the first product name from the list
+        else:
+            product_name = product_names  # If it's already a string, use it directly
+        
+        product_name = product_name.replace("_", " ")    
+        response_data["product_name"] = product_name
+        
+        # Get product details using the cleaned product name
+        response_data["product_response"] = get_product_details(product_name)
+
     elif best_intent == "category_search":
         response_data["category_name"] = extract_category_name(user_query)
         response_data["category_response"] = get_products_in_category(response_data["category_name"])
+        
+        # Calculate Levenshtein distance for category search
+        categories = ["earring", "watch", "ring", "sunglasses", "necklace", "bracelet"]  # Modify this as per your categories
+        user_input = user_query.lower()
+        distances = {}
+        
+        for category in categories:
+            distance = levenshtein_distance(user_input, category)
+            distances[category] = distance
+        
+        response_data["levenshtein_distances"] = distances
     
     # Final response generation
-    response = generate_response(user_query)
+    response = generate_response(user_query,request)
     
     # Pass data to template
     context = {

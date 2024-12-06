@@ -103,7 +103,7 @@
                     <img src="{% static 'images/4.jpg' %}" alt="Image 1">
                 </figure>
                 <div class="overlay">
-                    <h2>Home>Update User Profile</h2>
+                    <h2>Home>Update User Information</h2>
                 </div>
     </div>
 </header>
@@ -112,17 +112,16 @@
 <div class="container" style="margin-bottom: 40px;">
     <div class="box-element offset-md-2" style="width: 800px;margin-top: 10px;">
         <div  style="margin-top: 10px;">
-            <h1 class="text-center">UPDATE YOUR PROFILE</h1>
+            <h1 class="text-center">UPDATE YOUR PROFILE INFORMATION</h1>
         </div>
         <div class="row"  style="margin-top: 40px;">
             <div class="col-md-6 offset-md-3">
-                <form method="POST" action="{%url 'update_user' %}">
+                <form method="POST" action="{%url 'update_info' %}">
                     {% csrf_token %}
     
-                    {{user_form.as_p}}
+                    {{form.as_p}}
         
-                    <button type="submit" class="custom-login-button">Update Profile</button>
-                    <a href="{% url 'update_password' %}" class="custom-login-button">Change Password</a>
+                    <button type="submit" class="custom-login-button">Update Profile Information</button>
                     <br><br>
                 </form>
             </div>
