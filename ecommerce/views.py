@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm,UserInfoForm
+from payment.forms import ShippingForm
+from payment.models import ShippingAddress
 from django.core.paginator import Paginator
 import json
 from cart.cart import Cart
@@ -122,7 +124,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, "You have registered successfully!")
-            return redirect('home')
+            return redirect('update_info')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -203,18 +205,26 @@ def update_password(request):
 
 def update_info(request):
     if request.user.is_authenticated:
+        #get currnet user
         current_user=Profile.objects.get(user__id=request.user.id)
+        #get current users shipping info
+        shipping_user=ShippingAddress.objects.get(user__id=request.user.id)
+        #get original user form
         form= UserInfoForm(request.POST or None, instance=current_user)
+        #get users shipping form
+        shipping_form=ShippingForm(request.POST or None, instance=shipping_user)
 
-        if form.is_valid():
+        if form.is_valid() or shipping_form.is_valid():
+            #save original form
             form.save()
- 
+            #save shipping form
+            shipping_form.save()
             messages.success(request,"Your informations has been updated!!!")
             return redirect('home')
         else:
             for error in list(form.errors.values()):
                     messages.error(request,error)
-        return render(request,"update_info.html",{'form':form})
+        return render(request,"update_info.html",{'form':form,'shipping_form':shipping_form})
     else:
         messages.success(request,"User must be logged in")
         return redirect('home')

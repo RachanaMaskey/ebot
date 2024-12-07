@@ -129,6 +129,9 @@
 
 
 <div class="container" style="margin-bottom: 20px;">
+    <div style="margin-bottom: 15px;">
+        <a class="custom-cart-button"  href="{%url 'home' %}">Home</a>
+    </div>
     {% if cart_products%}
     <div class="box-element">
         <div class="cart-row">
@@ -194,10 +197,10 @@
             <div class="container" style="margin-top: 20px;margin-bottom: 20px;">
                 <div class="box-element">
                     <div><strong>Total Price: Rs.{{totals}}</strong></div>
-                    <br>
-                    <div style="margin-bottom: 15px;">
-                        <a class="custom-cart-button"  href="{%url 'home' %}">Home</a>
+                    <div align="right">
+                        <a href="{%url 'checkout'%}" class="custom-login-button">Checkout</a>
                     </div>
+                    <br>
                 </div>
             </div>
         {%else%}

@@ -91,50 +91,96 @@
                 height: 530px;
             }
 
+            /* table css */
+            table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
         </style>
     </header>
 </html>
 
 
 <header class="py-5">
-    <div class="container">
+    <div class="container" >
             <div id="slider" style="height: 250px;">
                 <figure>
                     <img src="{% static 'images/4.jpg' %}" alt="Image 1">
                 </figure>
                 <div class="overlay">
-                    <h2>Home>Update User Information</h2>
+                    <h1>Home>Checkout</h1>
                 </div>
     </div>
 </header>
 
 
-<div class="container" style="margin-bottom: 40px;">
-    <div class="box-element offset-md-2" style="width: 800px;margin-top: 10px;">
-        <div  style="margin-top: 10px;">
-            <h1 class="text-center">UPDATE YOUR PROFILE INFORMATION</h1>
-        </div>
-        <div class="row"  style="margin-top: 40px;">
-            <div class="col-md-6 offset-md-3">
-                <strong>Billing Information</strong>
-                <hr>
-                <br>
-                <form method="POST" action="{%url 'update_info' %}">
-                    {% csrf_token %}
-    
-                    {{form.as_p}}
-                    <br><br>
-                     <strong>Shipping Infoarmations:</strong>
-                     <hr>
-                     <br>
-                    {{shipping_form.as_p}}
-        
-                    <button type="submit" class="custom-login-button">Update Profile Information</button>
-                    <br><br>
-                </form>
-            </div>
+<div class="container" style="margin-bottom: 20px;">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                  Order Summary
+                </div>
+                <div class="card-body">
+                    {%for product in cart_products %}
+                        {{product.name}}:
+                        {%if product.is_sale%}
+                            Rs {{product.sale_price}}
+                        {%else%}
+                            Rs {{product.price}}
+                        {%endif%}
+                        <br>
+                        <small>Quantity
+                        {%for key,value in quantities.items %}
+                            {%if key == product.id|slugify%}
+                                {{value}}
+                            {%endif%}
+                        {%endfor%}</small>
+                </div>
+                <div class="card-footer">
+                    Total Price: Rs.{{totals}}
+                </div>
+                {%endfor%}
+              </div>
+              <br>
+              <a href="{%url 'cart_summary%'}" class="custom-login-button">Update item</a>
         </div>
     </div>
 </div>
 
+<div class="container" style="margin-top: 40px;">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    Shipping Informations
+                </div>
+                <div class="card-body">
+                    {{shipping_form.as_p}}
+                </div>
+        </div>
+        <br>
+        <a href="#" class="custom-login-button">Continue Billing</a>
+    </div>
+</div>
+
+
+</div>
+
 {%endblock content%}
+
+
