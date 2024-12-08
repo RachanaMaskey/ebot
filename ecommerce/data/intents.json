@@ -6,6 +6,8 @@
         "patterns": [
           "Hello",
           "yo",
+          "gleam-bot",
+          "gleam",
           "Hi",
           "Hey",
           "Good morning",
@@ -3859,7 +3861,512 @@
               "responses":[
       
               ]
-            }
+            },
+            {
+              "tag":"add_to_cart",
+              "patterns":[
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0",
+                  "1","2","3","4","5","6","7","8","9","10","0"
+              ],
+              "responses":[
+      
+              ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Clear the cart",
+                "Empty my cart",
+                "Remove all items from the cart",
+                "Clear all products",
+                "I want to empty my cart",
+                "Delete everything from my cart",
+                "Clear it out",
+                "Empty the shopping cart",
+                "Clear all"
+              ],
+              "responses": [
+                "Your cart has been emptied successfully.",
+                "All items have been removed from your cart.",
+                "The cart is now empty.",
+                "Successfully cleared all products from your cart.",
+                "Your shopping cart is empty now."
+              ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Clear the cart",
+                "Empty my cart",
+                "Remove all items from the cart",
+                "Clear all products",
+                "I want to empty my cart",
+                "Delete everything from my cart",
+                "Clear it out",
+                "Empty the shopping cart",
+                "Clear all"
+              ],
+              "responses": [
+                "Your cart has been emptied successfully.",
+                "All items have been removed from your cart.",
+                "The cart is now empty.",
+                "Successfully cleared all products from your cart.",
+                "Your shopping cart is empty now."
+              ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Clear the cart",
+                "Empty my cart",
+                "Remove all items from the cart",
+                "Clear all products",
+                "I want to empty my cart",
+                "Delete everything from my cart",
+                "Clear it out",
+                "Empty the shopping cart",
+                "Clear all"
+              ],
+              "responses": [
+                "Your cart has been emptied successfully.",
+                "All items have been removed from your cart.",
+                "The cart is now empty.",
+                "Successfully cleared all products from your cart.",
+                "Your shopping cart is empty now."
+              ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            {
+              "tag": "clear_cart",
+              "patterns": [
+                
+                "Remove everything from the cart",
+                "Get rid of all items in my cart",
+                "Can you clear my cart?",
+                "Take out all items from the cart",
+                "Erase everything from my cart",
+                "Clear my shopping cart",
+                "I want everything removed from my cart",
+                "Wipe my cart clean",
+                "Start my cart over",
+                "Empty it completely",
+                "Reset my cart",
+                "Discard all items in the cart",
+                "I don't want anything in my cart",
+                "Flush out my cart",
+                "Remove the contents of my cart",
+                "Take everything out of my cart",
+                "Leave my cart empty",
+                "No more items in the cart"
+            ],
+
+              "responses": [
+                 ]
+            },
+            
+          {
+            "tag": "clear_cart",
+            "patterns": [
+                "Clear everything from the cart",
+                "Empty the cart completely",
+                "Remove vintage watch and boho ring from the cart",
+                "Can you reset my cart and remove all items?",
+                "Erase the heart ring and lucky bracelet from my cart",
+                "I want my cart cleared, including the trendy sunglass and pearl necklace",
+                "Discard the analog watch and star earring from my cart",
+                "Wipe out my entire cart, including silver ring and chain bracelet",
+                "Take all the items out of the cart, like the butterfly bracelet and shell necklace",
+                "Flush my cart completely, even the hoop earring and evileye bracelet",
+                "Make my cart empty and remove the brown watch and black shades",
+                "Remove everything, including the heart pendant and round sunglass",
+                "Clear my cart and delete the drop earring and star earring",
+                "Please remove all items, including the boho ring and silver ring",
+                "Take out vintage watch, pearl necklace, and everything else from the cart",
+                "Leave my cart empty, especially the trendy sunglass and hoop earring",
+                "I want nothing left in my cart, including the lucky bracelet and butterfly bracelet",
+                "Empty my cart and get rid of the chain bracelet and analog watch",
+                "Erase all products in the cart, including the star earring and shell necklace",
+                "Discard everything, including black shades and brown watch",
+                "Flush out everything, like the heart ring and round sunglass",
+                
+                "Reset my shopping cart, removing hoop earring and butterfly bracelet",
+                "Start my cart fresh, excluding the silver ring and chain bracelet",
+                "Please wipe my cart, including vintage watch and trendy sunglass",
+                "Can you take out everything, including the heart pendant and drop earring?",
+                "Clear the contents of my shopping cart, especially black shades and boho ring",
+                "Leave the cart empty, taking out heart ring and star earring",
+                "Reset my shopping list, including pearl necklace and round sunglass",
+                "Take everything out of my cart, including evileye bracelet and shell necklace",
+                "Erase all items in the cart, such as the trendy sunglass and hoop earring",
+                "Wipe everything clean, removing vintage watch and analog watch",
+                "Delete all products from my cart, especially the butterfly bracelet and silver ring",
+                "Flush all products out of the cart, including the brown watch and lucky bracelet",
+                "Discard the heart pendant and chain bracelet from my cart",
+                
+                "Take all products out, like pearl necklace and drop earring",
+                "Clear all items, including the star earring and shell necklace",
+                "I want the cart cleared, removing round sunglass and trendy sunglass",
+                "Remove the vintage watch, brown watch, and everything else",
+                "Take out the hoop earring and heart ring while clearing the cart",
+                "Flush the cart of evileye bracelet and black shades"
+            ],
+            "responses": []
+        },
+        {
+          "tag":"category_search",
+          "patterns":[
+  
+            "bracelet",
+"braclet",
+"bracelett",
+"bracele",
+"bracelef",
+"bracalet",
+"bbracelet",
+"braceleet",
+"braceletd",
+"braceled",
+"braceklet",
+"bracelelt",
+"bracelets",
+"braceleth",
+"bracelept",
+"bracelrt",
+"bracelettt",
+"braceleg",
+"brcelet",
+"braceley"
+          ],
+          "responses":[
+  
+          ]
+        },
+        {
+          "tag":"category_search",
+          "patterns":[
+  
+            "earring",
+"earing",
+"earrng",
+"errring",
+"earriing",
+"eaaring",
+"eaaring",
+"earrign",
+"earrring",
+"earrimg",
+"earrinng",
+"earrin",
+"errig",
+"earringg",
+"eearing",
+"earriingg",
+"earin",
+"eaarring",
+"erring",
+"earringh",
+"erring"
+          ],
+          "responses":[
+  
+          ]
+        },
+        {
+          "tag":"category_search",
+          "patterns":[
+  
+           "ring",
+"rng",
+"rin",
+"rign",
+"rring",
+"riing",
+"rig",
+"ringg",
+"ringh",
+"ringn",
+"rinn",
+"rimg",
+"rinf",
+"rong",
+"rung",
+"ting",
+"ringk",
+"hing",
+"bing",
+"ringr"
+          ],
+          "responses":[
+  
+          ]
+        },
+        {
+      
+          "tag": "greeting",
+          "patterns": [
+            "how are you?",
+            "Hello",
+            "yo",
+            "gleam-bot",
+            "gleam",
+            "Hi",
+            "Hey",
+            "Good morning",
+            "Good afternoon",
+            "Good evening",
+            "What's up?",
+            "How's it going?",
+            "Hey there",
+            "Greetings",
+            "Hi there!",
+            "how are you?",
+            "Hello, how are you?",
+            "Hey, what's new?",
+            "Howdy!",
+            "Hello there!",
+            "Hey, how's your day?",
+            "Hiya!",
+            "Good to see you",
+            "How are you doing?",
+            "Hi, what's up?",
+            "Hello, can you help me?",
+            "Hey, how's it going?",
+            "Hello, nice to meet you",
+            "Hi, how can you assist me?",
+            "Hey there, chatbot",
+            "Hi, I hope you're doing well",
+            "Hi, it's nice to talk to you",
+            "Hello! Are you there?",
+            "Hi, just checking in!",
+            "Good day, how can you help me?",
+            "Namaste"
+          ],
+          "responses": [
+            "Hello! How can I assist you today?",
+            "Hi there! How can I help?",
+            "Hey! What can I do for you?",
+            "Hello! What do you need help with today?"
+          ]
+        
+        
+      }
+        
+          
+            
+            
+            
+            
           
                 
             

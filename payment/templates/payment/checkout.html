@@ -132,7 +132,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background-color:#B59F78;">
                   Order Summary
                 </div>
                 <div class="card-body">
@@ -148,13 +148,14 @@
                         {%for key,value in quantities.items %}
                             {%if key == product.id|slugify%}
                                 {{value}}
+                                <hr>
                             {%endif%}
                         {%endfor%}</small>
+                    {%endfor%}
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" style="background-color:#B59F78;">
                     Total Price: Rs.{{totals}}
                 </div>
-                {%endfor%}
               </div>
               <br>
               <a href="{%url 'cart_summary%'}" class="custom-login-button">Update item</a>
@@ -166,7 +167,7 @@
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-md-8 offset-md-2">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background-color:#B59F78;">
                     Shipping Informations
                 </div>
                 <div class="card-body">
@@ -175,6 +176,13 @@
         </div>
         <br>
         <a href="#" class="custom-login-button">Continue Billing</a>
+        <br>
+        <br>
+        <form method="POST" action="{% url 'initiate_payment' %}">
+            {% csrf_token %}
+            <input type="hidden" name="total_amount" value="{{ totals }}">
+            <button type="submit" class="custom-login-button">Proceed to Payment</button>
+        </form>
     </div>
 </div>
 

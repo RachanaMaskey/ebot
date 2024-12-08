@@ -120,7 +120,8 @@ class Cart():
         quantities=self.cart
 
         #start couning at 0
-        sum=0
+        sum={}
+
         for key,value in quantities.items():
             #convert key string into int
             key=int(key)
@@ -130,7 +131,7 @@ class Cart():
                         sum=(product.sale_price*value)
                     else:
                         sum=(product.price*value)
-        
+
         return sum
 
 
@@ -181,3 +182,11 @@ class Cart():
             carty=carty.replace("\'","\"")
             #save carty to the profile model
             current_user.update(old_cart=str(carty))
+
+    def clear(self):
+        """
+        Clear all items from the cart and update the session.
+        """
+        self.cart = {}  # Reset the cart dictionary
+        self.session['session_key'] = self.cart  # Update session key to reflect cleared state
+        self.session.modified = True

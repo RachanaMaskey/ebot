@@ -201,75 +201,911 @@
             "tag": "add_to_cart"
         },
         {
-            "patterns": "hi",
-            "tag": "greeting"
+            "patterns": "i want to create an account",
+            "tag": "account_registration"
         },
         {
-            "patterns": "earring",
-            "tag": "category_search"
+            "patterns": "register",
+            "tag": "account_registration"
         },
         {
-            "patterns": "add to cart",
-            "tag": "add_to_cart"
-        },
-        {
-            "patterns": "earring add to cart",
-            "tag": "add_to_cart"
-        },
-        {
-            "patterns": "2 star earring add to cart",
-            "tag": "add_to_cart"
-        },
-        {
-            "patterns": "2 star earring",
+            "patterns": "",
             "tag": "product_search"
         },
         {
-            "patterns": "star earring",
-            "tag": "product_search"
-        },
-        {
-            "patterns": "add to cart",
+            "patterns": "add 4 lotus ring",
             "tag": "add_to_cart"
         },
         {
-            "patterns": "buy",
-            "tag": "product_search"
+            "patterns": "add brown watch",
+            "tag": "add_to_cart"
         },
         {
-            "patterns": "pay",
-            "tag": "payment_inquiry"
+            "patterns": "add handbag",
+            "tag": "add_to_cart"
         },
         {
-            "patterns": "esewa",
-            "tag": "payment_inquiry"
-        },
-        {
-            "patterns": "9841123456",
-            "tag": "product_search"
-        },
-        {
-            "patterns": "hi",
-            "tag": "greeting"
+            "patterns": "add 3 handbag",
+            "tag": "add_to_cart"
         },
         {
             "patterns": "hello",
             "tag": "greeting"
         },
         {
+            "patterns": "how are you?",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "how are you?",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "let me view my cart",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": "when will my item arrive?",
+            "tag": "shipping_inquiry"
+        },
+        {
+            "patterns": "clear cart",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": "",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "add boho ring to the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 3 boho ring to the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "do you have boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "do you have boho ring with you?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "do you have boho ring with you?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "with you?",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "hey",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "how are you?",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "i am good too",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "i am good",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "what",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "add 1 lucky bracelet",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 1 boho ring to the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 1 boho ring to the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "yo",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "add 2 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "let me see my cart",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": "add 2 vintage watch in cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 1 heart pendant, 3 boho ring to the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 1 heart pendant, 3 boho ring to the cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 heart pendant",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 heart pendant, 5 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "i want to add item in my cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "2 brown watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "2 brown watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "1",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "1",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "2 brown watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "11 lotus ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "10 lotus ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "3 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "remove boho ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "clear my cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "add 1 vintage watch, 3 boho ring, 7 lotus ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "remove 1 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "remove vintage watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "remove vintage watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "remove vintage watch",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "add 2 hoop earring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 1 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "remove vintage watch from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "add 1 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 hoop earring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "delete 1 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "delete vintage watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "delete vintage watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "do you have a boho?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "do you have an boho?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "do you have an boho?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want to buy boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want boho",
+            "tag": "account_registration"
+        },
+        {
+            "patterns": "i want boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want to buy a boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want to buy a boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want to buy a boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want to buy a boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "lets buy boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i am looking for boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i am looking for boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "beho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "beho ring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "i want a ring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "i want a boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "meh",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "lecku",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "beho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "brho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "brho ring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "do you have brho",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "do you have boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "meh",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "meh",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "bro",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "beho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "clear",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "i want meh",
+            "tag": "account_registration"
+        },
+        {
+            "patterns": "do you have meh",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "mmm",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "yes",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "no",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "no",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "no",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "no",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "flush",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "erase",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "delete",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "remove",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "empty",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "add boho",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 5 lotus ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "delete 2 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "delete boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "delete boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "remove boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "remove boho ring from my cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "remove 2 lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "remove 2 lotus ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "remove lotus ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "remove lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "lets view the cart",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": " remove lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "remove lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "remove lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "bora",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "bore",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "bohr",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "behr",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "beho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "remove all items from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "add 2 boho ring, 4 lotus ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "remove lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "remove lotus ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "delete lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "delete lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "delete lotus ring from the cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "delete all products from my cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "add 2 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 3 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "what do i have in my cart?",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": "see cart",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": "add 3 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "view cart",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": "let me see my cart",
+            "tag": "view_cart"
+        },
+        {
+            "patterns": "empty my cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "delete all the products from my cart",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "add 1 hoop earring, 7 vintage watch, 3 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "delete all ",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "delete all",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "beho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "hopp",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "erring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "erring",
+            "tag": "product_search"
+        },
+        {
             "patterns": "ring",
             "tag": "category_search"
         },
         {
-            "patterns": "add to cart 2 star ring",
+            "patterns": "earring",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "earrring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "do you have rng",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "rng",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "rrng",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "rrng",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "rng",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "ncklce",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "pendant",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "pendant",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "pendant",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "beho",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "beho",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "rng",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "rng",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "i want to login",
+            "tag": "account_login"
+        },
+        {
+            "patterns": "i want to create an account",
+            "tag": "account_registration"
+        },
+        {
+            "patterns": "help me",
+            "tag": "help"
+        },
+        {
+            "patterns": "bye",
+            "tag": "farewell"
+        },
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "i want boho",
+            "tag": "account_registration"
+        },
+        {
+            "patterns": "i want boho",
+            "tag": "account_registration"
+        },
+        {
+            "patterns": "i want boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want boho ring",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want heart pendant",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "heart",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "bro",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "moimoi ",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "momo?",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "gleam-bot?",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "gleam-bot",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "gleam-bot",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "add 3 boho ring, 2 lotus ring",
             "tag": "add_to_cart"
         },
         {
-            "patterns": "add to cart two star earring",
+            "patterns": "add 3 boho ring",
             "tag": "add_to_cart"
         },
         {
-            "patterns": "add to cart 2 star earring",
+            "patterns": "add 2 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "place 7 boho ring in cart",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "place 6 boho ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 2 vintage watch",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 11 lotus ring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want vancleef",
+            "tag": "account_registration"
+        },
+        {
+            "patterns": "i want brown watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want brown watch from here",
+            "tag": "clear_cart"
+        },
+        {
+            "patterns": "i want brown watch here",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want brown watch handsome me",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "give me brown watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "show me brown watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "vintage",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want brown watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "i want brown watch",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "brown",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "grey",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "shell",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "show me shell necklace",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "rarrngi",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "earrngi",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "earrngi",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "earrngi",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "how are you?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "hi?",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "how are you?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "how are you?",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "how are you?",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "add 2 star earring",
             "tag": "add_to_cart"
         }
     ]

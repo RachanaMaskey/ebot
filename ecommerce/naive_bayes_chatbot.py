@@ -38,7 +38,7 @@ def save_user_input_and_intent(user_input, intent):
 
 json_file_path = os.path.join(os.path.dirname(__file__), 'data', 'intents.json')
 
-STOPWORDS = {"the", "is","are", "and", "any", "in", "to", "a", "of", "for", "on", "it", "with", "me"}
+STOPWORDS = {"the", "is","are", "and", "any", "in", "to", "a", "an", "of", "for", "on", "it", "with", "me"}
 SUFFIXES = []
 
 def preprocess_text(text):
@@ -231,29 +231,32 @@ def generate_response(user_input,request):
         return 'To log in, click <a href="/login/">here</a> to access your account.'
 
     elif intent == "account_registration":
-        return 'To register, click <a href="/signup/">here</a> to create an account.'
+        return 'To register, click <a href="/register/">here</a> to create an account.'
     
     elif intent == "view_cart":
         cart = Cart(request)  # Create a cart object using the current request session
         cart_products = cart.get_prods()  # Call the method to get the products in the cart
         quantities = cart.get_quants()  # Call the method to get the quantities for each product
-        totals = cart.cart_total()  # Get the total prices for each product
-        total_price = cart.total()  # Get the grand total price
-        
+        total_price = cart.cart_total()  # Get the grand total price
+
         # Check if the cart is empty
         if not cart_products:  # If cart_products is empty
             response = "Your cart is empty. <a href='/allproduct/'>Browse our products</a>."
         else:
             # Create a response string with product names, quantities, and totals
             response = "Your cart contains: <br>"
-            for product, quantity in zip(cart_products, quantities):
-                response += f"<strong>Product:</strong> {product.name.replace('_',' ')}<br>"
-                
-                response += f"<strong>Price:</strong>Rs. {product.price} <br>"
-
-            response += f"<strong><u>Total Price:</u></strong>Rs. {totals} <br>"
-
+            for product in cart_products:
+                product_quantity = quantities.get(str(product.id), 0)  # Get quantity for this product
+                response += (
+                    f"<strong>Product:</strong> {product.name.replace('_', ' ')}<br>"
+                    f"<strong>Quantity:</strong> {product_quantity}<br>"
+                    f"<strong>Price (per item):</strong> Rs. {product.price}<br>"
+                    f"<strong>Total for this product:</strong> Rs. {product.price * product_quantity}<br><br>"
+                )
+            response += f"<strong><u>Grand Total:</u></strong> Rs. {total_price}<br>"
+        
         return response
+
 
 
     elif intent == "add_to_cart":
@@ -265,24 +268,68 @@ def generate_response(user_input,request):
             try:
                 # Normalize product name for database lookup
                 product = Product.objects.get(name__iexact=product_name.replace(" ", "_"))
-                cart.add(product=product, quantity=quantity)  # Add the specified quantity
-                response += f"Successfully added <strong>{quantity} x {product.name.replace('_', ' ')}</strong> to your cart.<br>"
+                product_id = str(product.id)
+
+                if product_id in cart.cart:
+                    # Update existing product quantity
+                    new_quantity = quantity
+
+                    if new_quantity > 10:
+                        response += (
+                            f"Cannot update <strong>{product.name.replace('_', ' ')}</strong> to <strong>{new_quantity}</strong>. "
+                            f"The maximum allowed is 10.<br>"
+                        )
+                    else:
+                        cart.update(product=product_id, quantity=new_quantity)  # Update the quantity
+                        response += (
+                            f"Updated <strong>{product.name.replace('_', ' ')}</strong> to <strong>{new_quantity}</strong> in your cart.<br>"
+                            f"Click to <a href='/cart/'>view</a> your cart.<br>"
+                        )
+                else:
+                    # Add product if it's not in the cart
+                    cart.add(product=product, quantity=quantity)
+                    response += (
+                        f"Successfully added <strong>{quantity} x {product.name.replace('_', ' ')}</strong> to your cart.<br>"
+                        f"Click to <a href='/cart/'>view</a> your cart.<br>"
+                    )
             except Product.DoesNotExist:
                 response += f"Sorry, we couldn't find a product named <strong>'{product_name.replace('_', ' ')}'</strong>.<br>"
 
         return response if response else "Please specify a valid product and quantity to add to your cart."
 
        
+    elif intent == "clear_cart":
+        product_quantities = extract_product_quantities(user_input)  # Extract product names and quantities from user input
+        response = ""
+        cart = Cart(request)  # Initialize the cart for the session
+
+        if "all" in user_input.lower() or "every" in user_input.lower():
+            # Clear the entire cart
+            cart.clear()
+            response = "Your cart has been emptied successfully."
+        else:
+            response += f"You can modify the contents in your cart <a href='/cart/'>here</a>.<br>"
+
+        return response if response else "Your cart is already empty or the product you mentioned is not in the cart."
+
+
+    return "I'm not sure how to respond to that.PLease specify what you want."
+
+
+def string_similarity(a, b):
     
-
-    return "I'm not sure how to respond to that."
-
+    #Custom similarity function that calculates the proportion of matching characters.
+    
+    a, b = a.lower(), b.lower()
+    matches = sum(1 for char in a if char in b)
+    max_length = max(len(a), len(b))
+    return matches / max_length if max_length else 0
 
 def extract_product_names(user_input):
     words = preprocess_text(user_input.lower())
-    keywords = ["about", "product", "item", "is", "want", "show", "tell", "have", "details", "info","buy"
-                ,"add", "put", "place"]
-    product_names = []
+    keywords = ["about", "product", "item", "is", "looking", "want", "want to buy", "show", "tell", "have", "details", "info", "buy",
+                "add", "put", "place", "remove", "clear", "discard", "delete"]
+    product_names = set()
 
     for keyword in keywords:
         if keyword in words:
@@ -295,38 +342,46 @@ def extract_product_names(user_input):
                 for i in range(len(extracted_words)):
                     potential_name = "_".join(extracted_words[:i + 1]).capitalize()
                     
-                    # Check against the actual product name
+                    # Check both actual and alternate product names
                     product = Product.objects.filter(name=potential_name).first()
                     if product:
-                        product_names.append(product.name)
+                        product_names.add(product.name)
                         break
                     
-                    # Check against alternate names
-                    products = Product.objects.all()
-                    for prod in products:
-                        alternate_names = prod.get_alternate_names()
-                        # Compare both the potential name and alternate names
-                        if potential_name.lower() in alternate_names:
-                            product_names.append(prod.name)
+                    for prod in Product.objects.all():
+                        if potential_name.lower() in prod.get_alternate_names():
+                            product_names.add(prod.name)
                             break
-
             break
 
-    # Fallback check for alternate names
+    # Fallback Mechanism
     if not product_names:
         fallback_name = "_".join(words).capitalize()
         product = Product.objects.filter(name=fallback_name).first()
         if product:
-            product_names.append(product.name)
+            product_names.add(product.name)
         else:
-            products = Product.objects.all()
-            for prod in products:
-                alternate_names = prod.get_alternate_names()
-                if fallback_name.lower() in alternate_names:
-                    product_names.append(prod.name)
-                    break
+            # Use custom similarity to find close matches
+            suggestions = []
 
-    return product_names if product_names else [user_input.strip().replace(" ", "_").capitalize()]
+            for prod in Product.objects.all():
+                # Check similarity with actual and alternate names
+                similarity_score_name = string_similarity(fallback_name, prod.name)
+                if similarity_score_name > 0.8:
+                    suggestions.append((prod.name, similarity_score_name))
+
+                for alt_name in prod.get_alternate_names():
+                    similarity_score_alt = string_similarity(fallback_name, alt_name)
+                    if similarity_score_alt > 0.8:
+                        suggestions.append((prod.name, similarity_score_alt))
+
+            # Sort suggestions by similarity score and pick the top matches
+            suggestions = sorted(suggestions, key=lambda x: x[1], reverse=True)[:3]
+            product_names.update([suggestion[0] for suggestion in suggestions])
+
+    return list(product_names) if product_names else [user_input.strip().replace(" ", "_").capitalize()]
+
+
 
 
 
@@ -340,7 +395,7 @@ def get_product_details(product_name):
         product_details = f"We have: <br> <a href='{product_url}'><strong>{product.name}</strong></a> : Rs.{product.price}.<br>"
         return product_details
     except Product.DoesNotExist:
-        return f"Sorry, we couldn't find a product named <strong>'{product_name.replace('_',' ')}'</strong>."
+        return f"Sorry, we don't have <strong>'{product_name.replace('_',' ')}'</strong> in our stock."
     
 
 
@@ -393,7 +448,7 @@ def get_products_in_category(category_name):
 import re
 def extract_product_quantities(user_input):
    
-    pattern = r"(\d+)\s+([\w\s]+)(?:,|and|to the cart|$)"
+    pattern = r"(\d+)\s+([\w\s]+)(?:,|and|$)"
     matches = re.findall(pattern, user_input, re.IGNORECASE)
 
     product_quantities = {}
