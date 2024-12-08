@@ -110,32 +110,28 @@ class Cart():
         return total
     
     def total(self):
-        #get product id
-        product_ids=self.cart.keys()
+        # Get product IDs and their quantities from the cart
+        product_ids = self.cart.keys()
+        quantities = self.cart
 
-        #lookup those keys in product database model
-        products=Product.objects.filter(id__in=product_ids)
+        # Retrieve product details from the database
+        products = Product.objects.filter(id__in=product_ids)
 
-        #get quantities
-        quantities=self.cart
+        # Create a dictionary to store the total details for each product
+        sum = []
 
-        #start couning at 0
-        sum={}
-
-        for key,value in quantities.items():
-            #convert key string into int
-            key=int(key)
-            for product in products:
-                if product.id==key:
-                    if product.is_sale:
-                        sum=(product.sale_price*value)
-                    else:
-                        sum=(product.price*value)
+        for product in products:
+            product_id = str(product.id)  # Match the cart keys
+            if product_id in quantities:
+                quantity = quantities[product_id]  # Get quantity from cart
+                price = product.sale_price if product.is_sale else product.price  # Get product price
+                total = price * quantity  # Calculate price × quantity
+                sum.append({
+                    'total': total
+                })
 
         return sum
-
-
-    
+            
     def get_quants(self):
         quantities=self.cart
         return quantities

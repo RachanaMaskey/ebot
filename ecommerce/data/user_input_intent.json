@@ -1107,6 +1107,18 @@
         {
             "patterns": "add 2 star earring",
             "tag": "add_to_cart"
+        },
+        {
+            "patterns": "sale product",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 100 star earring",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 12 amber sunglass",
+            "tag": "add_to_cart"
         }
     ]
 }

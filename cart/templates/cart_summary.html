@@ -149,7 +149,7 @@
                 <div class="cart-row">
                     <div style="flex:2;margin-top: 3px;" >{{product.id}}</div>
                     <div style="flex:3"><img src="{{product.image.url}}" alt="hi" style="width:155px;height: 155px;margin-right:3;"></div>
-                    <div style="flex:2">{{product.name}}</div>
+                    <div class="product-name" style="flex:2">{{product.name}}</div>
                     <div style="flex:2">
                         <div class="row justify-content-center">
                             <div class="col-md-8" >
@@ -183,7 +183,10 @@
                         <div style="flex:2"> Rs {{product.price}}</div>
                     {%endif%}
                     <br>
-                    <div style="flex:2">Rs{{sum}}</div>
+                    {% for product in product_totals %}
+                    <div style="flex:2">Rs{{product.total}}</div>
+                    {% endfor %}
+                    <!-- <div style="flex:2">Rs{{product.total}}</div> -->
                     <div style="flex:1.4">
                         <button type="button" data-index="{{product.id}}" class="custom-cart-button update-cart">Update</button>
                     </div>
@@ -294,6 +297,13 @@ $(document).on('click','.delete-product',function(e){
    
 })
 
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.product-name').forEach(el => {
+            el.textContent = el.textContent.replace(/_/g, ' ');
+        });
+    });
 </script>
 
 {%endblock content%}

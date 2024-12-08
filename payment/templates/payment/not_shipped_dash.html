@@ -1,0 +1,133 @@
+{%extends 'main.html' %}
+{%load static%}
+{%block content%}
+
+<html>
+    <header>
+        <style>
+             * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            html, body {
+                width: 100%;
+                height: 100%;
+                overflow-x: hidden; /* Prevent horizontal scrolling */
+            }
+    
+            /* Main Slider Container */
+            #slider {
+                position: relative;
+                width: 90vw; /* Fullscreen width */
+                height: 70vh;
+                overflow: hidden;
+            }
+    
+            /* Slider Animation */
+            #slider figure {
+                display: flex;
+                position: absolute;
+                width: 800%; /* For multiple images */
+                margin: 0;
+                left: 0;
+                top: 0;
+                animation: sliderAnimation 15s infinite;
+            }
+    
+            #slider figure img {
+                width: 90vw; /* Fullscreen width for each image */
+                height: 70vh;
+                object-fit: cover; /* Ensures image fits nicely */
+            }
+    
+            /* Text Overlay for Each Slide */
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0); /* Slight dark overlay */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                text-align: center;
+            }
+    
+            .overlay h1 {
+                font-size: 3rem;
+                margin-bottom: 10px;
+                color: white;
+            }
+    
+            .overlay h5 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: white;
+            }
+    
+            .overlay button {
+                background-color: #AB886D;
+                color: white;
+                border: 1px solid #54473F;
+                margin: 0 10px;
+                padding: 8px 16px;
+                border-radius: 5px;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+    
+            .overlay button:hover {
+                background-color: #54473F;
+                color: white;
+            }
+
+            .custom-aboutus{
+                width: 100%;
+                height: 530px;
+            }
+
+        </style>
+    </header>
+</html>
+
+
+<header class="py-5">
+    <div class="container">
+            <div id="slider" style="height: 250px;">
+                <figure>
+                    <img src="{% static 'images/4.jpg' %}" alt="Image 1">
+                </figure>
+                <div class="overlay">
+                    <h1>Home>Non-Shipped Items</h1>
+                </div>
+    </div>
+</header>
+
+
+<div class="container" style="margin-bottom: 40px;">
+    <div class="box-element">
+        <div class="cart-row">
+            <div style="flex:3"><strong>Order</strong></div>
+            <div style="flex:3"><strong>Customer</strong></div>
+            <div style="flex:3"><strong>Price</strong></div>
+            <div style="flex:3"><strong>Email Address</strong></div>
+            <div style="flex:3"><strong>Date Ordered</strong></div>
+        </div>
+        <div class="cart-row">
+            {% for item in orders %}
+                <div style="flex:3">{{item.id}}</div>
+                <div style="flex:3">{{item.full_name}}</div>
+                <div style="flex:3">{{item.amount_paid}}</div>
+                <div style="flex:3">{{item.email}}</div>
+                <div style="flex:3">{{item.date_ordered}}</div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+
+{%endblock content%}

@@ -38,18 +38,30 @@
                 </li>
             </ul>
            <form>
-                <!-- <button class="custom-login-button" type="submit">Login/Register</button> -->
                 {% if user.is_authenticated%}
-                <div class="row">
-                    <div class="col">
-                        <a class=" nav-item dropdown nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;width: 70px;height: 30px;margin-left: 1px;text-align: center;">Profile</a>
+                <div class="row" style="margin-right: 10px;">
+                    <div class="col-4" style="margin-top: 5px; color: white;text-align: justify;">
+                        <p style="margin: 0;">Hello,{{ user.username }}</p>
+                    </div>
+                    <div class="col-2">
+                        <a class=" nav-item dropdown nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;width: 70px;height: 30px;margin-left: 1px;text-align: center;margin-top: 4px;">Profile</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{%url 'update_user'%}">User Profile</a></li>
                             <li><hr class="dropdown-divider" /></li>
                             <li><a class="dropdown-item" href="{%url 'update_info'%}">User Info</a></li> 
                         </ul>
                     </div>
-                    <div class="col" style="margin-top: 5px;">
+                    {%if user.is_superuser%}
+                    <div class="col-2">
+                        <a class=" nav-item dropdown nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;width: 70px;height: 30px;margin-left: 1px;text-align: center;margin-top: 4px;">Order</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{%url 'shipped_dash'%}">Shipped Orders</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="{%url 'not_shipped_dash'%}">Orders to Ship</a></li> 
+                        </ul>
+                    </div>
+                    {%endif%}
+                    <div class="col-2" style="margin-top: 5px;">
                         <a href="{%url 'logout'%}" class="custom-login-button">Logout</a>
                     </div>
                     
@@ -63,7 +75,7 @@
            
 
 
-            <form >
+            <form style="margin-left: 0px;" >
                 <a href="{%url 'cart_summary'%}" class="custom-cart-button">
                     <i class="bi-cart-fill me-1" ></i>
                     Cart

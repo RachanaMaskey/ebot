@@ -122,7 +122,7 @@
                     <img src="{% static 'images/4.jpg' %}" alt="Image 1">
                 </figure>
                 <div class="overlay">
-                    <h1>Home>Checkout</h1>
+                    <h1>Home>Process Order</h1>
                 </div>
     </div>
 </header>
@@ -137,14 +137,14 @@
                 </div>
                 <div class="card-body">
                     {%for product in cart_products %}
-                        <div class="cardbody">
-                            {{product.name}}:  
-                            {%if product.is_sale%}
-                                Rs {{product.sale_price}}
-                            {%else%}
-                                Rs {{product.price}}
-                            {%endif%}
-                        </div>
+                        {{product.name}}:
+                        <!-- <img src="{{product.image.url}}" alt="hi" style="width:155px;height: 155px;margin-right:3;"> -->
+                        {%if product.is_sale%}
+                            Rs {{product.sale_price}}
+                        {%else%}
+                            Rs {{product.price}}
+                        {%endif%}
+                        <br>
                         <small>Quantity
                         {%for key,value in quantities.items %}
                             {%if key == product.id|slugify%}
@@ -159,7 +159,6 @@
                 </div>
               </div>
               <br>
-              <a href="{%url 'cart_summary' %}" class="custom-login-button">Update item</a>
         </div>
     </div>
 </div>
@@ -172,35 +171,39 @@
                     Shipping Informations
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{%url 'billing_info'%}">
-                        {%csrf_token%}
-                    {{shipping_form.as_p}}
+                    Name:{{shipping_info.shipping_full_name}} <br>
+                    Email:{{shipping_info.shipping_email}} <br>
+                    Address:{{shipping_info.shipping_address1}} <br>
+                    City:{{shipping_info.shipping_city}} <br>
+                    Province:{{shipping_info.shipping_province}} <br>
+                    Zipcode:{{shipping_info.shipping_zipcode}} <br>
+                    Country:{{shipping_info.shipping_country}} <br>
+                    <!-- <a href="{%url 'update_info'%}" class="custom-login-button">Update Shipping</a> -->
                 </div>
-                <a href="{%url 'update_info'%}" class="custom-login-button">Update Shipping</a>
         </div>
+        <br><br>
+
+
+
+        <div class="card">
+            <div class="card-header" style="background-color:#B59F78;">
+                Billing Informations
+            </div>
+            <div class="card-body">
+                <form action="{%url 'process_order'%}">
+               {{billing_form.as_p}}
+
+            </div>
+    </div>
+    <br>
+    <button class="custom-login-button">Pay now</button>
+    </form>
         <br>
-        <button class="custom-login-button">Continue Billing</button>
-        </form>
-        <br>
-        <br>
-        <form method="POST" action="{% url 'initiate_payment' %}">
-            {% csrf_token %}
-            <input type="hidden" name="total_amount" value="{{ totals }}">
-            <button type="submit" class="custom-login-button">Proceed to Payment</button>
-        </form>
     </div>
 </div>
 
 
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.cardbody').forEach(el => {
-            el.textContent = el.textContent.replace(/_/g, ' ');
-        });
-    });
-</script>
 
 {%endblock content%}
 
