@@ -117,16 +117,25 @@
             <div style="flex:3"><strong>Price</strong></div>
             <div style="flex:3"><strong>Email Address</strong></div>
             <div style="flex:3"><strong>Shipped Date</strong></div>
+            <div style="flex:3"><strong>Shipped</strong></div>
         </div>
-        <div class="cart-row">
-            {% for item in orders %}
-                <div style="flex:3">{{item.id}}</div>
+        {% for item in orders %}
+            <div class="cart-row">
+                <div style="flex:3"><a href="{%url 'orders' item.id%}">{{item.id}}</a></div>
                 <div style="flex:3">{{item.full_name}}</div>
                 <div style="flex:3">{{item.amount_paid}}</div>
                 <div style="flex:3">{{item.email}}</div>
                 <div style="flex:3">{{item.date_shipped}}</div>
-            {%endfor%}
-        </div>
+                <div style="flex:3">
+                    <form method="POST">
+                        {%csrf_token%}
+                        <input type="hidden" name="shipping_status" value="true">
+                        <input type="hidden" name="num" value="{{item.id}}">
+                        <button type="submit" class="custom-login-button">Mark Not Shipped</button>
+                    </form>
+                </div>
+            </div>
+        {%endfor%}
     </div>
 
 </div>

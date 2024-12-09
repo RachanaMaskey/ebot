@@ -91,101 +91,82 @@
                 height: 530px;
             }
 
-            /* table css */
-            table {
-            width: 50%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f4f4f4;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
         </style>
     </header>
 </html>
 
 
 <header class="py-5">
-    <div class="container" >
+    <div class="container">
             <div id="slider" style="height: 250px;">
                 <figure>
                     <img src="{% static 'images/4.jpg' %}" alt="Image 1">
                 </figure>
                 <div class="overlay">
-                    <h1>Home>Checkout</h1>
+                    <h1>Home>Orders Informations</h1>
                 </div>
     </div>
 </header>
 
 
-<div class="container" style="margin-bottom: 20px;">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header" style="background-color:#B59F78;">
-                  Order Summary
+<div class="container" style="margin-bottom: 40px;">
+    <div class="box-element">
+        <div class="card">
+            <div class="card-header">
+                Order ID:{{order.id}}
+                Amount:Rs {{order.amount_paid}}
+            </div>
+            <div class="card-body">
+                <div class="cardbody">
+                    Customers Name : {{order.full_name}}
+                <br>
                 </div>
-                <div class="card-body">
-                    {%for product in cart_products %}
-                        <div class="cardbody">
-                            {{product.name}}:  
-                            {%if product.is_sale%}
-                                Rs {{product.sale_price}}
-                            {%else%}
-                                Rs {{product.price}}
-                            {%endif%}
-                        </div>
-                        <small>Quantity
-                        {%for key,value in quantities.items %}
-                            {%if key == product.id|slugify%}
-                                {{value}}
-                                <hr>
-                            {%endif%}
-                        {%endfor%}</small>
-                    {%endfor%}
-                </div>
-                <div class="card-footer" style="background-color:#B59F78;">
-                    Total Price: Rs.{{totals}}
-                </div>
-              </div>
-              <br>
-              <a href="{%url 'cart_summary' %}" class="custom-login-button">Update item</a>
-        </div>
-    </div>
-</div>
-
-<div class="container" style="margin-top: 40px;">
-    <div class="row" style="margin-bottom: 20px;">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header" style="background-color:#B59F78;">
-                    Shipping Informations
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{%url 'billing_info'%}">
-                        {%csrf_token%}
-                    {{shipping_form.as_p}}
-                </div>
-                <a href="{%url 'update_info'%}" class="custom-login-button">Update Shipping</a>
+                Email:{{order.email}}
+                <br>
+                {%if order.date_shipped %}
+                    Date Shipped : {{ order.date_shipped }}
+                {% else %}
+                    Date Ordered : {{ order.date_ordered}}
+                {% endif %}
+                <br>
+            </div>
+            <div class="card-header">
+                Shipping Address
+            </div>
+            <div class="card-body">
+                <pre>{{order.shipping_address}}</pre>
+            </div>
+            <div class="card-header">
+                Order Items Details
+            </div>
+            <div class="card-body">
+                {%for item in items%}
+                    <div class="cardbody">
+                        Product : {{item.product}}
+                    <br>
+                    </div>
+                    Quantity : {{item.quantity}}
+                    <br>
+                    Price : Rs {{item.price}}
+                    <hr>
+                {%endfor%}
+            </div>
         </div>
         <br>
-        <button class="custom-login-button">Continue Billing</button>
-        </form>
-        <br>
-        <br>
+        {%if not order.shipped%}
+            <form method="POST">
+                {%csrf_token%}
+                <input type="hidden" name="shipping_status" value="true">
+                <button type="submit" class="custom-login-button">Mark As Shipped</button>
+            </form>
+        {%else%}
+            <form method="POST">
+                {%csrf_token%}
+                <input type="hidden" name="shipping_status" value="false">
+                <button type="submit" class="custom-login-button">Mark As Not Shipped</button>
+            </form>
+        {%endif%}
     </div>
-</div>
-
 
 </div>
 
@@ -198,5 +179,3 @@
 </script>
 
 {%endblock content%}
-
-

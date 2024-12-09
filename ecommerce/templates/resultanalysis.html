@@ -132,12 +132,27 @@
                 {% endif %}
             </div>
         </div>
+
+        <!-- Step 6: Levenshtein Distances for Category Search -->
+{% if best_intent == "category_search" %}
+<div class="step">
+    <h3>Step 6: Levenshtein Distances for Category Search</h3>
+    <p>The Levenshtein distances between the user query and available categories are:</p>
+    <div class="code">
+        {% for category, distance in levenshtein_distances.items %}
+            Category: <strong>{{ category }}</strong>, Levenshtein Distance: <span class="highlight">{{ distance }}</span><br>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
     </div>
 
     <script>
         // Get the intents and probabilities from Django context
-        const intents = {{ intent_probabilities.keys|join:", "|safe }};
-        const probabilities = {{ intent_probabilities.values|join:", "|safe }};
+        const intents = {{intent_probabilities.keys|join:", "|safe }};
+        const probabilities = {{intent_probabilities.values|join:", "|safe }};
 
         // Create a bar chart using Chart.js
         const ctx = document.getElementById('intentChart').getContext('2d');
@@ -173,3 +188,4 @@
     </script>
 </body>
 </html>
+ 

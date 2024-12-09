@@ -191,7 +191,7 @@
                 Billing Informations
             </div>
             <div class="card-body">
-                <form method="POST" action="{%url 'process_order'%}">
+            <form method="POST" action="{%url 'process_order'%}">
                 {%csrf_token%}
                {{billing_form.as_p}}
 
@@ -199,6 +199,11 @@
     </div>
     <br>
     <button class="custom-login-button">Pay now</button>
+    </form>
+    <form method="POST" action="{% url 'initiate_payment' %}">
+        {% csrf_token %}
+        <input type="hidden" name="total_amount" value="{{ totals }}">
+        <button type="submit" class="custom-login-button">Proceed to Payment</button>
     </form>
         <br>
     </div>

@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 import time
 from django.contrib import messages
-from ecommerce.models import Product
+from ecommerce.models import Product,Profile
+import datetime
 
 
 def checkout(request):
@@ -128,6 +129,10 @@ def process_order(request):
                     #Delete the key
                     del request.session[key]
 
+            #delete cart from database(old cart field)
+            current_user=Profile.objects.filter(user_id=request.user.id)
+            #delete shopping cartin database(old cart field)
+            current_user.update(old_cart="")
 
 
             messages.success(request,"Order Placed!!")
@@ -144,6 +149,18 @@ def process_order(request):
 def shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
         orders=Order.objects.filter(shipped=True)
+        if request.POST:
+            status=request.POST['shipping_status']
+            num=request.POST['num']
+            #get the order
+            order=Order.objects.filter(id=num)
+            #grab date & time
+            now=datetime.datetime.now()
+            #update order
+            order.update(shipped=False)
+            #redirect
+            messages.success(request,"Shipping status Updated!!!")
+            return redirect('home')
         return render(request, "payment/shipped_dash.html", {"orders":orders})
     else:
         messages.success(request,"Access Denied")
@@ -153,10 +170,54 @@ def shipped_dash(request):
 def not_shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
         orders=Order.objects.filter(shipped=False)
+        if request.POST:
+            status=request.POST['shipping_status']
+            num=request.POST['num']
+            #get the order
+            order=Order.objects.filter(id=num)
+            #grab date & time
+            now=datetime.datetime.now()
+            #update order
+            order.update(shipped=True,date_shipped=now)
+            #redirect
+            messages.success(request,"Shipping status Updated!!!")
+            return redirect('home')
         return render(request, "payment/not_shipped_dash.html", {"orders":orders})
     else:
         messages.success(request,"Access Denied")
         return redirect('home')
+    
+
+def orders(request,pk):
+    if request.user.is_authenticated and request.user.is_superuser:
+        #get the order
+        order=Order.objects.get(id=pk)
+        #get the order items
+        items=OrderItem.objects.filter(order=pk)
+
+        if request.POST:
+            status=request.POST['shipping_status']
+            #check if true or false
+            if status=="true":
+                #get order
+                order=Order.objects.filter(id=pk)
+                #update the status
+                now=datetime.datetime.now()
+                order.update(shipped=True,date_shipped=now)
+            else:
+                 #get order
+                order=Order.objects.filter(id=pk)
+                #update the status
+                order.update(shipped=False)
+
+            messages.success(request,"Shipping status Updated!!!")
+            return redirect('home')
+
+        return render(request, "payment/orders.html", {"order":order,"items":items})
+    else:
+        messages.success(request,"Access Denied")
+        return redirect('home')
+
 
 #for esewa
 
@@ -187,7 +248,27 @@ def initiate_payment(request):
 
 
 def payment_success(request):
-    return render(request, "payment/payment_success.html", {})
+    #delete the browser cart
+    #first Get the cart
+    #get the cart
+    cart=Cart(request)
+    totals= cart.cart_total()
+    
+    # Clear the session cart
+    cart_keys = [key for key in request.session.keys() if key.startswith('cart')]
+    for key in list(request.session.keys()):
+        if key=="session_key":
+            #Delete the key
+            del request.session[key]
+    # Render the success page with total amounts
+    return render(request, "payment/payment_success.html", {"totals": totals})
+
+    # #Delete our cart
+    # for key in list(request.session.keys()):
+    #         if key=="session_key":
+    #         #Delete the key
+    #             del request.session[key]
+            
 
 
 def payment_failed(request):

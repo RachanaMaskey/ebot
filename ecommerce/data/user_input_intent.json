@@ -1119,6 +1119,50 @@
         {
             "patterns": "add 12 amber sunglass",
             "tag": "add_to_cart"
+        },
+        {
+            "patterns": "watch",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "watch",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "trend",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "hi",
+            "tag": "greeting"
+        },
+        {
+            "patterns": "watch",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "wacht",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "wacht",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "bag",
+            "tag": "add_to_cart"
+        },
+        {
+            "patterns": "add 3 lotus ring",
+            "tag": "add_to_cart"
         }
     ]
 }
