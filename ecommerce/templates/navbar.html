@@ -2,8 +2,8 @@
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="{%url 'home'%}">
+    <div class="container-fluid px-4 px-lg-5">
+        <a class="navbar-brand me-auto" href="{%url 'home'%}">
             <img id="logo" src="{% static 'images/logo1.png'%}" alt="picture" >
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,52 +36,43 @@
                 <li class="nav-item">
                     <a class="nav-link active" style="color: white;" href="{%url 'contact'%}">ContactUs</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" style="color: white;" href="{%url 'result_analysis'%}">Result Analysis</a>
+                </li>
             </ul>
-           <form>
-                {% if user.is_authenticated%}
-                <div class="row" style="margin-right: 10px;">
-                    <div class="col-4" style="margin-top: 5px; color: white;text-align: justify;">
-                        <p style="margin: 0;">Hello,{{ user.username }}</p>
-                    </div>
-                    <div class="col-2">
-                        <a class=" nav-item dropdown nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;width: 70px;height: 30px;margin-left: 1px;text-align: center;margin-top: 4px;">Profile</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{%url 'update_user'%}">User Profile</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="{%url 'update_info'%}">User Info</a></li> 
+            <div class="d-flex align-items-center">
+                {% if user.is_authenticated %}
+                    <span class="text-white me-3">Hello, {{ user.username }}</span>
+                    <div class="dropdown me-3">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="{% url 'update_user' %}">User Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'update_info' %}">User Info</a></li>
                         </ul>
                     </div>
-                    {%if user.is_superuser%}
-                        <div class="col-2">
-                            <a class=" nav-item dropdown nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;width: 70px;height: 30px;margin-left: 1px;text-align: center;margin-top: 4px;">Order</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{%url 'shipped_dash'%}">Shipped Orders</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{%url 'not_shipped_dash'%}">Orders to Ship</a></li> 
-                            </ul>
-                        </div>
-                    {%endif%}
-                        <div class="col-2" style="margin-top: 5px;">
-                            <a href="{%url 'logout'%}" class="custom-login-button">Logout</a>
-                        </div>
-                    
-                </div>
-                    
-                {%else%}
-                    <a href="{%url 'login'%}" class="custom-login-button">Login/Register</a>
-                {%endif%}
-
-           </form>
-           
-
-
-            <form style="margin-left: 0px;" >
-                <a href="{%url 'cart_summary'%}" class="custom-cart-button">
-                    <i class="bi-cart-fill me-1" ></i>
-                    Cart
-                    <span class="badge ms-1 rounded-pill" style="background-color: white; color: black;" id="cart_quantity">{{cart|length}}</span>
-                </a>   
-            </form>
+                {% if user.is_superuser %}
+                    <div class="dropdown me-3">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="orderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Order</a>
+                        <ul class="dropdown-menu" aria-labelledby="orderDropdown">
+                            <li><a class="dropdown-item" href="{% url 'shipped_dash' %}">Shipped Orders</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'not_shipped_dash' %}">Orders to Ship</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+                    <a href="{% url 'logout' %}" class="custom-login-button me-3">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="custom-login-button me-3">Login/Register</a>
+                {% endif %}
+                    <a href="{% url 'cart_summary' %}" class="custom-login-button position-relative">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class=" badge rounded-pill" style="background-color: white; color: black;" id="cart_quantity">
+                            {{ cart|length }}
+                        </span>
+                    </a>
+            </div>
         </div>
     </div>
 </nav>

@@ -1163,6 +1163,26 @@
         {
             "patterns": "add 3 lotus ring",
             "tag": "add_to_cart"
+        },
+        {
+            "patterns": "",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "boho",
+            "tag": "product_search"
+        },
+        {
+            "patterns": "watch",
+            "tag": "category_search"
+        },
+        {
+            "patterns": "watch",
+            "tag": "category_search"
         }
     ]
 }

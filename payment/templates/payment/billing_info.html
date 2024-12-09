@@ -122,7 +122,7 @@
                     <img src="{% static 'images/4.jpg' %}" alt="Image 1">
                 </figure>
                 <div class="overlay">
-                    <h1>Home>Billing Info</h1>
+                    <h1>Home>Billing Informations</h1>
                 </div>
     </div>
 </header>
@@ -130,86 +130,83 @@
 
 <div class="container" style="margin-bottom: 20px;">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header" style="background-color:#B59F78;">
-                  Order Summary
+                    Order Summary
                 </div>
                 <div class="card-body">
-                    {%for product in cart_products %}
+                    {% for product in cart_products %}
                         <div class="cardbody">
-                            {{product.name}}:
-                            <!-- <img src="{{product.image.url}}" alt="hi" style="width:155px;height: 155px;margin-right:3;"> -->
-                            {%if product.is_sale%}
-                                Rs {{product.sale_price}}
-                            {%else%}
-                                Rs {{product.price}}
-                            {%endif%}
+                            {{ product.name }}:
+                            <img src="{{ product.image.url }}" alt="Product Image" style="width: 100px; height: 100px; margin-right: 10px; object-fit: cover;">
+                            {% if product.is_sale %}
+                                Rs {{ product.sale_price }}
+                            {% else %}
+                                Rs {{ product.price }}
+                            {% endif %}
                         </div>
                         <small>Quantity
-                        {%for key,value in quantities.items %}
-                            {%if key == product.id|slugify%}
-                                {{value}}
-                                <hr>
-                            {%endif%}
-                        {%endfor%}</small>
-                    {%endfor%}
+                            {% for key, value in quantities.items %}
+                                {% if key == product.id|slugify %}
+                                    {{ value }}
+                                    <hr>
+                                {% endif %}
+                            {% endfor %}
+                        </small>
+                    {% endfor %}
                 </div>
-                <div class="card-footer" style="background-color:#B59F78;">
-                    Total Price: Rs.{{totals}}
+                <div class="card-footer" style="background-color: white;">
+                    Total Price: Rs.{{ totals }}
                 </div>
-              </div>
-              <br>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="container" style="margin-top: 40px;">
-    <div class="row" style="margin-bottom: 20px;">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header" style="background-color:#B59F78;">
                     Shipping Informations
                 </div>
                 <div class="card-body">
-                    Name:{{shipping_info.shipping_full_name}} <br>
-                    Email:{{shipping_info.shipping_email}} <br>
-                    Address:{{shipping_info.shipping_address1}} <br>
-                    City:{{shipping_info.shipping_city}} <br>
-                    Province:{{shipping_info.shipping_province}} <br>
-                    Zipcode:{{shipping_info.shipping_zipcode}} <br>
-                    Country:{{shipping_info.shipping_country}} <br>
-                    <!-- <a href="{%url 'update_info'%}" class="custom-login-button">Update Shipping</a> -->
+                    Name: {{ shipping_info.shipping_full_name }} <br>
+                    Email: {{ shipping_info.shipping_email }} <br>
+                    Address: {{ shipping_info.shipping_address1 }} <br>
+                    City: {{ shipping_info.shipping_city }} <br>
+                    Province: {{ shipping_info.shipping_province }} <br>
+                    Zipcode: {{ shipping_info.shipping_zipcode }} <br>
+                    Country: {{ shipping_info.shipping_country }} <br>
                 </div>
+            </div>
         </div>
-        <br><br>
-
-
-
-        <div class="card">
-            <div class="card-header" style="background-color:#B59F78;">
-                Billing Informations
-            </div>
-            <div class="card-body">
-            <form method="POST" action="{%url 'process_order'%}">
-                {%csrf_token%}
-               {{billing_form.as_p}}
-
-            </div>
-    </div>
-    <br>
-    <button class="custom-login-button">Pay now</button>
-    </form>
-    <form method="POST" action="{% url 'initiate_payment' %}">
-        {% csrf_token %}
-        <input type="hidden" name="total_amount" value="{{ totals }}">
-        <button type="submit" class="custom-login-button">Proceed to Payment</button>
-    </form>
         <br>
     </div>
-</div>
+    <br>
+    <br>
 
+    <div class="card">
+                <div class="card-header" style="background-color:#B59F78;">
+                    Billing Informations
+                </div>
+                <div class="card-body">
+                <form method="POST" action="{%url 'process_order'%}">
+                    {%csrf_token%}
+                {{billing_form.as_p}}
 
+                </div>
+            </div>
+        <br>
+        <button class="custom-login-button">Pay now</button>
+        </form>
+        <br>
+        <br>
+        <form method="POST" action="{% url 'initiate_payment' %}">
+            {% csrf_token %}
+            <input type="hidden" name="total_amount" value="{{ totals }}">
+            <button type="submit" class="custom-login-button">Proceed to Payment</button>
+        </form>
+            <br>
+        </div>
+    </div>
 </div>
 
 <script>

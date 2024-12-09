@@ -28,6 +28,7 @@ def about(request):
 def contact(request):
     return render(request,'contact.html',{})
 
+
 def allproduct(request):
     query = request.GET.get('q', '')  
     products = Product.objects.all()  # Fetch all products initially

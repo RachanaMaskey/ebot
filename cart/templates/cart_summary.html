@@ -135,20 +135,20 @@
     {% if cart_products%}
     <div class="box-element">
         <div class="cart-row">
-            <div style="flex:1.7"><strong>ID</strong></div>
-            <div style="flex:1.7"><strong>Product</strong></div>
-            <div style="flex:1.3"><strong>Product Name</strong></div>
+            <div style="flex:2"><strong>ID</strong></div>
+            <div style="flex:2"><strong>Product</strong></div>
+            <div style="flex:1.8"><strong>Product Name</strong></div>
             <div style="flex:1.5"><strong>Quantity</strong></div>
-            <div style="flex:1.2"><strong>Price</strong></div>
-            <div style="flex:1.4"><strong>Total</strong></div>
-            <div style="flex:1.4"><strong>Update</strong></div>
-            <div style="flex:1.4"><strong>Delete</strong></div>
+            <div style="flex:1.5"><strong>Price</strong></div>
+            <!-- <div style="flex:1.3"><strong>Total</strong></div> -->
+            <div style="flex:1.3"><strong>Update</strong></div>
+            <div style="flex:1"><strong>Delete</strong></div>
         </div>
       
             {%for product in cart_products %}
                 <div class="cart-row">
                     <div style="flex:2;margin-top: 3px;" >{{product.id}}</div>
-                    <div style="flex:3"><img src="{{product.image.url}}" alt="hi" style="width:155px;height: 155px;margin-right:3;"></div>
+                    <div style="flex:2.9"><img src="{{product.image.url}}" alt="hi" style="width:155px;height: 155px;margin-right:3;"></div>
                     <div class="product-name" style="flex:2">{{product.name}}</div>
                     <div style="flex:2">
                         <div class="row justify-content-center">
@@ -175,19 +175,19 @@
                     </div>
                     
                     {%if product.is_sale%}
-                        <div style="flex:2">
+                        <div style="flex:1.9">
                             <h6><strike>Rs {{product.price}}</strike></h6>
                             <h6>Rs {{product.sale_price}}</h6>    
                         </div>
                     {%else%}
-                        <div style="flex:2"> Rs {{product.price}}</div>
+                        <div style="flex:1.9"> Rs {{product.price}}</div>
                     {%endif%}
                     <br>
-                    {% for product in product_totals %}
+                    <!-- {% for product in product_totals %}
                     <div style="flex:2">Rs{{product.total}}</div>
-                    {% endfor %}
+                    {% endfor %} -->
                     <!-- <div style="flex:2">Rs{{product.total}}</div> -->
-                    <div style="flex:1.4">
+                    <div style="flex:1.6">
                         <button type="button" data-index="{{product.id}}" class="custom-cart-button update-cart">Update</button>
                     </div>
                     <div style="flex:1.4">

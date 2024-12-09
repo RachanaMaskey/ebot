@@ -330,6 +330,17 @@ iframe[Attributes] {
 	padding: 10px;
 }
 
+.navbar .d-flex > * {
+  margin-right: 15px;
+}
+
+.navbar .btn-outline-light {
+  padding: 5px 10px;
+}
+
+.navbar .position-relative {
+  margin-left: 15px;
+}
 
 :root {
   --bs-blue: #0d6efd;
